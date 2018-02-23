@@ -1,0 +1,29 @@
+/*
+variables here
+*/
+
+$border-test:2px solid #FFD1C3;
+$border-test-2:1.5px solid orangered;
+$border-test-3: 2px solid pink;
+/*
+utilities
+*/
+
+/*
+RESET
+*/
+
+*::before,
+*::after,
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

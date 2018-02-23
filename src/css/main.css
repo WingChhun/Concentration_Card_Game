@@ -1,0 +1,21 @@
+/*
+variables here
+*/
+/*
+utilities
+*/
+/*
+RESET
+*/
+*::before,
+*::after,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
