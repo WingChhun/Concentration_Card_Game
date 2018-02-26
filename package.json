@@ -4,7 +4,8 @@
   "description": "Single person card game called Concentration, will make use of the API from http://deckofcardsapi.com/",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "gulp",
+    "test": "jest ./src/js/test.js --watch"
   },
   "repository": {
     "type": "git",
@@ -15,6 +16,7 @@
   "bugs": {
     "url": "https://github.com/WingChhun/Concentration_Card_Game/issues"
   },
+
   "homepage": "https://github.com/WingChhun/Concentration_Card_Game#readme",
   "devDependencies": {
     "browser-sync": "^2.23.6",
