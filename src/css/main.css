@@ -23,3 +23,24 @@ html {
 body {
   background-color: #ECF0F1;
   color: #2C3E50; }
+
+.Card__container {
+  width: 90vw;
+  padding: 5px;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  transition: all .3s ease; }
+
+.Card__item {
+  flex: 1 0 7%;
+  max-width: 7%; }
+  .Card__item:not(:last-child) {
+    margin-right: .5%; }
+
+.Card__img {
+  width: 100%;
+  cursor: pointer; }
