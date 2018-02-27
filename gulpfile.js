@@ -29,7 +29,9 @@ gulp.task('sass', () => {
 */
 gulp.task('js', () => {
 
-    gulp.src(["node_modules/bootstrap/dist/js/bootstrap.min.js", "node_modules/jquery/dist/jquery.min.js", "node_modules/popper.js/dist/popper.min.js"])
+    gulp.src(["node_modules/bootstrap/dist/js/bootstrap.min.js", "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/popper.js/dist/popper.min.js", "node_modules/flip/dist/jquery.flip.min.js"
+        ])
         .pipe(gulp.dest("src/vendors/js"))
         .pipe(browserSync.stream());
 });
