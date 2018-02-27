@@ -1,3 +1,4 @@
+@import "./_loader.scss";
 /*
 variables here
 */
@@ -40,7 +41,8 @@ body {
 
 .Card {
     &__container {
-        margin: 0 auto;text-align:center;
+        margin: 0 auto;
+        text-align: center;
         width: 90vw;
         padding: 5px;
         max-width: 1200px;
@@ -59,15 +61,31 @@ body {
         }
         &.active {
             border: $border-active;
-            padding:.2px;
+            padding: .2px;
         }
-        &.hidden
-        {
-            display:none;
+        &.hidden {
+            display: none;
         }
     }
     &__img {
         width: 100%;
         cursor: pointer;
+    }
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.success-shown {
+    visibility: visible;
+}
+
+@keyframes fadeOut {
+    100% {
+        opacity: 0;
+    }
+    0% {
+        opacity: 1;
     }
 }
