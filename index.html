@@ -23,100 +23,45 @@
                     enim cupiditate magnam fuga provident, pariatur nam praesentium. Tempora eius perferendis molestiae quod
                     iusto, reiciendis sunt laborum maxime.</p>
                 <!-- button action -->
-                <a  class="btn btn-primary btn__action mt-3" id = "btn__new-game">New Game</a>
+                <a class="btn btn-primary btn__action mt-3" id="btn__new-game">New Game</a>
             </div>
 
-            <!-- note, need 4 rows of 13-->
-            <div class="card__container">
-                <div class="row">
-                    <div class="col-md-1">
-                        <div class="card">
-                            <img class="img-fluid" src="/assets/playing-card-back.png" alt="card-front">
-                        </div>
-                    </div>
-                    <!-- end col-md-1-->
-                    <div class="col-md-1">
-                        <div class="card">
-                            <img class="img-fluid" src="/assets/playing-card-back.png" alt="card-front">
-                        </div>
-                    </div>
-                    <!-- end col-md-1-->
-                    <div class="col-md-1">
-                        <div class="card">
-                            <img class="img-fluid" src="/assets/playing-card-back.png" alt="card-front">
-                        </div>
-                    </div>
-                    <!-- end col-md-1-->
 
-                    <div class="col-md-1">
-                        <div class="card">
-                            <img class="img-fluid" src="/assets/playing-card-back.png" alt="card-front">
-                        </div>
-                    </div>
-                    <!-- end col-md-1-->
 
-                    <div class="col-md-1">
-                        <div class="card">
-                            <img class="img-fluid" src="/assets/playing-card-back.png" alt="card-front">
-                        </div>
-                    </div>
-                    <!-- end col-md-1-->
+            <div class="Card__container">
 
-                    <div class="col-md-1">
-                        <div class="card">
-                            <img class="img-fluid" src="/assets/playing-card-back.png" alt="card-front">
-                        </div>
+                <div class="Card__item" id="card__flip">
+                    <div class="front">
+                        <img src="./assets/playing-cards-front/10_of_clubs.png" class="Card__img" alt="card-front">
                     </div>
-                    <!-- end col-md-1-->
-
-                    <div class="col-md-1">
-                        <div class="card">
-                            <img class="img-fluid" src="/assets/playing-card-back.png" alt="card-front">
-                        </div>
+                    <div class="back">
+                        <img src="./assets/playing-card-back.png" class="Card__img" alt="card front">
                     </div>
-                    <!-- end col-md-1-->
-
-                    <div class="col-md-1">
-                        <div class="card">
-                            <img class="img-fluid" src="/assets/playing-card-back.png" alt="card-front">
-                        </div>
-                    </div>
-                    <!-- end col-md-1-->
-
-                    <div class="col-md-1">
-                        <div class="card">
-                            <img class="img-fluid" src="/assets/playing-card-back.png" alt="card-front">
-                        </div>
-                    </div>
-                    <!-- end col-md-1-->
-
-                    <div class="col-md-1">
-                        <div class="card">
-                            <img class="img-fluid" src="/assets/playing-card-back.png" alt="card-front">
-                        </div>
-                    </div>
-                    <!-- end col-md-1-->
-                    <div class="col-md-1">
-                        <div class="card">
-                            <img class="img-fluid" src="/assets/playing-card-back.png" alt="card-front">
-                        </div>
-                    </div>
-                    <!-- end col-md-1-->
-
-                    <div class="col-md-1">
-                        <div class="card">
-                            <img class="img-fluid" src="/assets/playing-card-back.png" alt="card-front">
-                        </div>
-                    </div>
-                    <!-- end col-md-1-->
-
                 </div>
-                <!-- end row-->
-
-
-
+                <div class="Card__item" id="card__flip">
+                    <div class="front">
+                        <img src="./assets/playing-cards-front/10_of_clubs.png" class="Card__img" alt="card-front">
+                    </div>
+                    <div class="back">
+                        <img src="./assets/playing-card-back.png" class="Card__img" alt="card front">
+                    </div>
+                </div>
+                <div class="Card__item" id="card__flip">
+                    <div class="front">
+                        <img src="./assets/playing-cards-front/10_of_clubs.png" class="Card__img" alt="card-front">
+                    </div>
+                    <div class="back">
+                        <img src="./assets/playing-card-back.png" class="Card__img" alt="card front">
+                    </div>
+                </div>
             </div>
-            <!-- end card container -->
+
+        </div>
+        <!-- end card container -->
+
+
+        </div>
+        <!-- end card container -->
 
         </div>
         <!-- end container -->
@@ -125,6 +70,7 @@
 
     <!-- include vendor scripts -->
     <script src="./vendors/js/jquery.min.js"></script>
+    <script src="./vendors/js/jquery.flip.min.js"></script>
     <script src="./vendors/js/bootstrap.min.js"></script>
     <script src="./vendors/js/popper.min.js"></script>
     <!-- include user defined JS scripts -->
