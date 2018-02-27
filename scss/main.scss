@@ -9,6 +9,7 @@ $color-primary:#2C3E50; //for text
 $border-test:2px solid #FFD1C3;
 $border-test-2:1.5px solid orangered;
 $border-test-3: 2px solid pink;
+$border-active:3px solid $color-primary;
 /*
 utilities
 */
@@ -39,6 +40,7 @@ body {
 
 .Card {
     &__container {
+        margin: 0 auto;text-align:center;
         width: 90vw;
         padding: 5px;
         max-width: 1200px;
@@ -54,6 +56,14 @@ body {
         max-width: 7%;
         &:not(:last-child) {
             margin-right: .5%;
+        }
+        &.active {
+            border: $border-active;
+            padding:.2px;
+        }
+        &.hidden
+        {
+            display:none;
         }
     }
     &__img {

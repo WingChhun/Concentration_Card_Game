@@ -25,6 +25,8 @@ body {
   color: #2C3E50; }
 
 .Card__container {
+  margin: 0 auto;
+  text-align: center;
   width: 90vw;
   padding: 5px;
   max-width: 1200px;
@@ -40,6 +42,11 @@ body {
   max-width: 7%; }
   .Card__item:not(:last-child) {
     margin-right: .5%; }
+  .Card__item.active {
+    border: 3px solid #2C3E50;
+    padding: .2px; }
+  .Card__item.hidden {
+    display: none; }
 
 .Card__img {
   width: 100%;
