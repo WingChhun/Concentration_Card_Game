@@ -96,6 +96,7 @@ body {
 
 .Card__item {
   flex: 1 0 7%;
+  margin-bottom: 1.25%;
   max-width: 7%; }
   .Card__item:not(:last-child) {
     margin-right: .5%; }

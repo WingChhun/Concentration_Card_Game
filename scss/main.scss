@@ -55,6 +55,7 @@ body {
     }
     &__item {
         flex: 1 0 7%;
+        margin-bottom:1.25%;
         max-width: 7%;
         &:not(:last-child) {
             margin-right: .5%;
