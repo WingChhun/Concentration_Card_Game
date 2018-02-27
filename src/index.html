@@ -14,7 +14,7 @@
 
     <main>
         <!-- insert a CSS load spinner here, to show loading -->
-<div class="loader"></div>
+        <div class="loader"></div>
 
         <div class="container">
 
@@ -23,22 +23,26 @@
                 <p class="header--sub pt-2">Welcome to the concentration card game!, Click New Game if you want to start a new game, or shuffle the cards.
                     Otherwise, good luck trying to match all the pairs!
                 </p>
-                <!-- button action -->
-                <a class="btn btn-primary btn__action mt-3 mb-4" id="btn__new-game" style = "color:white;">New Game</a>
-                <!-- show alerts depenmding matches -->
+                <!-- Main Btn, reset game -->
+                <a class="btn btn-primary btn__action mt-3 mb-4" id="btn__new-game" style="color:white;">New Game</a>
 
+                <!-- show alerts depending onmatches -->
                 <p class="alert-success hidden">Match!</p>
                 <p class="alert-danger hidden">No Match! Try again</p>
-                <p class="toggle-success alert-success hidden">Play again?</p>
+
             </div>
 
         </div>
         <!-- end container -->
-        <!-- card container -->
+
+        <!-- card container 
+        - Will target this container and insert cards 
+        -->
         <div class="my-5 Card__container" id="Card_feed">
 
 
         </div>
+        <!-- end Card__container -->
 
 
 
@@ -52,7 +56,7 @@
     <script src="./vendors/js/bootstrap.min.js"></script>
     <script src="./vendors/js/popper.min.js"></script>
     <!-- include user defined JS scripts -->
-    <script src="./js/api.js"></script>
+  
     <script src="./js/main.js"></script>
 </body>
 
