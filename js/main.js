@@ -5,8 +5,7 @@ let cardArr = [];
 $(document).ready(function () {
 
     const $btnNew = document.querySelector("#btn__new-game");
-    $("#card__flip").flip();
-    $(".Card__item").flip();
+
     $btnNew.addEventListener("click", startGame);
 
 
@@ -57,7 +56,7 @@ function setCards() {
         -Request, to draw cards, 
         -Return array containing cards, will be used rto lay out the cards
     */
-    cardArr = []; //reset cardArr, in case resetting game
+
     let shuffleURL = `https://deckofcardsapi.com/api/deck/${Deck.deck_id}/draw/?count=52`;
     $.ajax({
             url: shuffleURL,
@@ -66,7 +65,7 @@ function setCards() {
         })
         .done((results) => {
 
-
+            cardArr = []; //reset cardArr, in case resetting game
             results.cards.forEach((card) => {
                 cardArr.push(card);
             });
@@ -81,22 +80,61 @@ function setCards() {
 
 function populateCards() {
     let template = "";
-    for (let i = 0; i < 5; i++) {
-        console.log("Card element " + cardArr[i].code);
+    const $cardContainer = document.querySelector("#Card_feed");
+    //Loop through cardArr, create a string template
+    for (let cardElement of cardArr) {
+        template = createTemplate(template, cardElement);
     }
+    $cardContainer.innerHTML = ''; //Reset before iterating again and again
+    $cardContainer.insertAdjacentHTML("afterbegin", template);
+
+    cardFlip();
 }
 
 function createTemplate(strTemplate, cardElement) {
 
 
     strTemplate += `
-        <div class="Card__item" id="card__flip" data-value ="${cardElement.value}" data-suit ="${cardElement.suit}" data-code ="${cardElement.code}">
+        <div class="Card__item"  id="card__flip" data-value ="${cardElement.value}" data-suit ="${cardElement.suit}" data-code ="${cardElement.code}" data-flipped="false">
             <div class="front">
-                <img src="${cardElement.image}" class="Card__img" alt="card-front">
+            <img src="${cardElement.image}" class="Card__img" alt="card-front">
+          
+        
             </div>
             <div class="back">
-                <img src="./assets/playing-card-back.png" class="Card__img" alt="card front">
+            <img src="./assets/playing-card-back.png" class="Card__img" alt="card front">
             </div>
         </div>`;
     return strTemplate;
+};
+
+function cardFlip() {
+    // $("#card__flip").flip();
+    $(".Card__item").flip();
+    $(".Card__item").flip(true);
+    //Event listener
+    $(".Card__item").on('click', function () {
+        $(this).addClass("active active-flipped");
+        $(this).data("flipped", "true"); //change flipped to true
+
+        checkCards($(this));
+    });
+
+
+
+}
+
+function checkCards(SelectedCard) {
+    /*
+    Every time a card is selected, We check all the cards, with data attribute of flipped =true, thne compar the codes
+    */
+    //check the value
+    const $flippedArray = $(".active-flipped");
+
+    console.log("Flipped array lenmgth", $flippedArray.length);
+    if ($flippedArray.length == 2) {
+        //2 cards are shown, now check
+        console.log("Performing action...");
+    } 
+
 };
