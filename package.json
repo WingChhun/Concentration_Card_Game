@@ -16,7 +16,6 @@
   "bugs": {
     "url": "https://github.com/WingChhun/Concentration_Card_Game/issues"
   },
-
   "homepage": "https://github.com/WingChhun/Concentration_Card_Game#readme",
   "devDependencies": {
     "browser-sync": "^2.23.6",
@@ -26,6 +25,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
+    "flip": "github:nnattawat/flip",
     "jquery": "^3.3.1",
     "popper.js": "^1.12.9"
   }
