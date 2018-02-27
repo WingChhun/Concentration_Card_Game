@@ -1,4 +1,5 @@
 @import "./_loader.scss";
+@import "./_mixins.scss";
 /*
 variables here
 */
@@ -43,9 +44,9 @@ body {
     &__container {
         margin: 0 auto;
         text-align: center;
-        width: 90vw;
+        width: 95vw;
         padding: 5px;
-        max-width: 1200px;
+        max-width: 1400px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -70,6 +71,7 @@ body {
     }
     &__img {
         width: 100%;
+min-height:150px;
         cursor: pointer;
     }
 }
@@ -82,6 +84,10 @@ body {
     visibility: visible;
 }
 
+.alert-danger,.alert-success
+{
+    font-size:24px;
+}
 @keyframes fadeOut {
     100% {
         opacity: 0;

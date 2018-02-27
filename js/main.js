@@ -3,23 +3,27 @@ let cardArr = [];
 
 
 $(document).ready(function () {
+    console.log("Document loaded and ready...");
     const $btnNew = document.querySelector("#btn__new-game");
-
-    const $loadSpinner = $(".loader");
-    window.addEventListener("load", function (e) {
-        $loadSpinner.css({
-            'display': 'none'
-        });
-    });
 
     $btnNew.addEventListener("click", startGame);
     start();
 });
 
 function start() {
-    console.log("Document loaded and ready...");
-
+    loadSpinner();
     setDeck();
+
+}
+
+function loadSpinner() {
+    const $loadSpinner = $(".loader");
+
+    window.addEventListener("load", function (e) {
+        $loadSpinner.css({
+            'display': 'none'
+        });
+    });
 
 }
 
@@ -100,13 +104,14 @@ function createTemplate(strTemplate, cardElement) {
     strTemplate += `
         <div class="Card__item"  id="card__flip" data-value ="${cardElement.value}" data-suit ="${cardElement.suit}" data-code ="${cardElement.code}" data-flipped="false">
             <div class="front">
+
             <img src="./assets/playing-card-back.png" class="Card__img" alt="card front">
-            </div>
+            </div><!-- end front -->
             <div class="back">
-            <img src="${cardElement.image}" class="Card__img" alt="card-front">
-  
-            </div>
-        </div>`;
+            <img src="${cardElement.image}" class="Card__img" alt="card-front">            
+            
+            </div><!-- end back -->
+        </div><!-- end card__item -->`;
     return strTemplate;
 };
 
@@ -140,7 +145,7 @@ function checkCards(SelectedCard) {
         $cardArr.push(element);
     }
 
-    console.log("Flipped array lenmgth", $flippedCards.length);
+    console.log("Flipped array length", $flippedCards.length);
     if ($flippedCards.length == 2) {
         //2 cards are shown, now check
         console.log("Performing action...");
@@ -152,8 +157,12 @@ function checkCards(SelectedCard) {
             //Only return if they do not match the value AND dont match the respective codes
             //Show success alert
             $(".alert-success").toggleClass("success-shown");
-            $firstCard.remove();
-            $secondCard.remove();
+            //Timeout, Add a delay so user can see that they have a match
+            setTimeout(() => {
+                $firstCard.remove();
+                $secondCard.remove();
+            }, 450);
+
             let newArr = cardArr.filter((element) => {
                 return element.code != $firstCard.dataset.code && element.code != $secondCard.dataset.code;
             });
@@ -164,34 +173,39 @@ function checkCards(SelectedCard) {
                 if (cardArr.length == 0) {
                     $('.toggle-success').toggleClass('hidden, success-shown');
                 }
-            }, 600);
+            }, 500);
 
         } else if (!($firstCard.dataset.value == $secondCard.dataset.value)) {
-            /*
-             - The cards do not match,
-             -Empty the flippedArray, to be reusable
-             - toggle all 
 
-                -Timeout, allow user to see cards before flipping
-            -Show mismatch error
-            */
-            $(".alert-danger").toggleClass("success-shown");
             console.log("The cards do not match, handling it...");
+
+            $(".alert-danger").toggleClass("success-shown");
             $flippedCards == 0;
-
             setTimeout(() => {
-                $(".active-flipped").flip('toggle');
-                $flippedCards.forEach((element) => {
-                    element.classList.toggle("active-flipped");
-                })
-                $(".alert-danger").toggleClass("success-shown");
-            }, 700);
+                this.flipActive();
+            }, 450);
 
 
-        }
+        } //end else if datasets dont match
 
+    } //end initial if
+
+    this.flipActive = function () {
+        /*
+         - The cards do not match,
+         -Empty the flippedArray, to be reusable
+         - toggle all 
+
+            -Timeout, allow user to see cards before flipping
+        -Show mismatch error
+        */
+        //clearTimeout(); //clear timeout, in case user clicks too fast
+        $(".active-flipped").flip('toggle');
+        $flippedCards.forEach((element) => {
+            element.classList.toggle("active-flipped");
+        })
+        $(".alert-danger").toggleClass("success-shown");
 
 
     }
-
-};
+}; //end function
