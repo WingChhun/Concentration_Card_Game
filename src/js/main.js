@@ -154,7 +154,7 @@ function checkCards(SelectedCard) {
 
     // console.log("Flipped array length", $flippedCards.length);
 
-    console.log("Flipped array length", $flippedCards.length);
+    //console.log("Flipped array length", $flippedCards.length);
 
     if ($flippedCards.length == 2) {
         //2 cards are shown, now check
