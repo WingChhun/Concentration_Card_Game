@@ -111,7 +111,7 @@ utilities
   font-weight: 400; }
 
 .header--three {
-  font-size: 24px;
+  font-size: 26px;
   border-bottom: 3px solid #FF7700;
   padding-bottom: 8px;
   width: 40%; }
@@ -126,7 +126,7 @@ utilities
   justify-content: space-around;
   align-content: center; }
   .header__directions-text {
-    font-size: 18px;
+    font-size: 22px;
     line-height: 130%; }
 
 .Card__container {

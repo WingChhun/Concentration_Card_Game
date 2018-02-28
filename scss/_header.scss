@@ -1,4 +1,3 @@
-
 .header {
     &__container {
         min-height: 300px;
@@ -17,7 +16,7 @@
         font-weight: 400;
     }
     &--three {
-        font-size: 24px;
+        font-size: 26px;
         border-bottom: 3px solid $color-tertiary;
         padding-bottom: 8px;
         width: 40%;
@@ -33,7 +32,7 @@
         align-content: center;
         &-item {}
         &-text {
-            font-size: 18px;
+            font-size: 22px;
             line-height: 130%;
         }
     }
