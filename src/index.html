@@ -18,17 +18,58 @@
 
         <div class="container">
 
-            <div class="header__container text-center p-3 mt-5">
-                <h1 class="header--main mt-3">Hello this is the Concentration Card Game</h1>
-                <p class="header--sub pt-2">Welcome to the concentration card game!, Click New Game if you want to start a new game, or shuffle the cards.
-                    Otherwise, good luck trying to match all the pairs!
-                </p>
-                <!-- Main Btn, reset game -->
-                <a class="btn btn-primary btn__action mt-3 mb-4" id="btn__new-game" style="color:white;">New Game</a>
+            <div class="header__container jumbotron text-left ">
+                <div class="header__text-container">
+                    <h1 class="header--main mt-3"> Concentration Card Game</h1>
+                    <p class="header--sub pt-2">Welcome to the Concentration Card Game!
+                    </p>
+                    <p class="header--three pt-2">How to play:
 
-                <!-- show alerts depending onmatches -->
-                <p class="alert-success hidden">Match!</p>
-                <p class="alert-danger hidden">No Match! Try again</p>
+                    </p>
+                    <ul class="header__directions">
+                        <li class="header__directions-item">
+                            <p class="header__directions-text">
+                                52 cards are layed out face down, in 4 rows, 13 cards in each row,
+                            </p>
+                        </li>
+
+                        <li class="header__directions-item">
+                            <p class="header__directions-text">
+                                Click on the cards to flip them, if the two cards match they are removed from the board
+                            </p>
+                        </li>
+                        <li class="header__directions-item">
+                            <p class="header__directions-text">
+                                The game ends once you have matched all of the pairs!
+                            </p>
+                        </li>
+                        <li class="header__directions-item">
+                            <p class="header__directions-text">
+                                At any time you can click
+                                <span class="u-bold">'New Game'</span> to re-shuffle the deck and the board.
+                            </p>
+                        </li>
+                        <li class="header__directions-item">
+                            <p class="header__directions-text">
+                                Hit
+                                <span class="u-bold">'New Game'</span>to test your concentration and memory!
+                            </p>
+                        </li>
+                    </ul>
+                    <!-- Main Btn, reset game -->
+
+                    <a class="btn btn--primary" id="btn__new-game">
+                        New Game
+                    </a>
+                    <br>
+
+
+                    <p class="u-alert--success-2 hidden">Shuffled!</p>
+                    <p class="u-alert--success hidden">Match! Keep it up!</p>
+                    <p class="u-alert--danger hidden">No Match! Try again</p>
+
+                </div>
+
 
             </div>
 
@@ -38,8 +79,7 @@
         <!-- card container 
         - Will target this container and insert cards 
         -->
-        <div class="my-5 Card__container" id="Card_feed">
-
+        <div class="my-2 Card__container" id="Card_feed">
 
         </div>
         <!-- end Card__container -->
@@ -56,7 +96,7 @@
     <script src="./vendors/js/bootstrap.min.js"></script>
     <script src="./vendors/js/popper.min.js"></script>
     <!-- include user defined JS scripts -->
-  
+
     <script src="./js/main.js"></script>
 </body>
 
