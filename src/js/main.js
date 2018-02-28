@@ -51,9 +51,11 @@ function setDeck() {
 
             Deck = data;
             $(".u-alert--success-2").toggleClass("success-shown");
+
             setTimeout(() => {
-                $(".u-alert--success-2").toggleClass("success-shown, hidden");
+                $(".u-alert--success-2").toggleClass("success-shown");
             }, 500);
+
             // console.log("Deck success", Deck);
             setCards();
         })
@@ -149,13 +151,10 @@ function checkCards(SelectedCard) {
         $cardArr.push(element);
     }
 
-    <<
 
     // console.log("Flipped array length", $flippedCards.length);
-    ===
-    ===
-    =
-    console.log("Flipped array length", $flippedCards.length); >>>
+
+    console.log("Flipped array length", $flippedCards.length);
 
     if ($flippedCards.length == 2) {
         //2 cards are shown, now check
@@ -204,26 +203,22 @@ function checkCards(SelectedCard) {
     } //end initial if
 
 
+    this.flipActive = function () {
+        /*
+         - The cards do not match,
+         -Empty the flippedArray, to be reusable
+         - toggle all 
+            -Timeout, allow user to see cards before flipping
+        -Show mismatch error
+        */
+        //clearTimeout(); //clear timeout, in case user clicks too fast
+        $(".active-flipped").flip('toggle');
+        $flippedCards.forEach((element) => {
+            element.classList.remove("active-flipped");
+        })
+        $(".u-alert--danger").toggleClass("success-shown");
+
+
+    }
+
 } //end else if datasets dont match
-
-} //end initial if
-
-
-this.flipActive = function () {
-    /*
-     - The cards do not match,
-     -Empty the flippedArray, to be reusable
-     - toggle all 
-        -Timeout, allow user to see cards before flipping
-    -Show mismatch error
-    */
-    //clearTimeout(); //clear timeout, in case user clicks too fast
-    $(".active-flipped").flip('toggle');
-    $flippedCards.forEach((element) => {
-        element.classList.remove("active-flipped");
-    })
-    $(".u-alert--danger").toggleClass("success-shown");
-
-
-}
-}; //end function
