@@ -1,0 +1,35 @@
+/*
+utilities
+*/
+//Utilies
+.u-bold {
+    color: $color-tertiary;
+    font-weight: 500;
+}
+
+.u-alert {
+    &--success,
+    &--success-2 {
+        text-align: center;
+        color: $color-success;
+        font-size: 17px;
+    }
+    &--danger {
+        text-align: center;
+        color: $color-danger;
+        font-size: 17px;
+    }
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.success-shown {
+    visibility: visible;
+}
+
+.alert-danger,
+.alert-success {
+    font-size: 24px;
+}

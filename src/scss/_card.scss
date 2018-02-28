@@ -1,0 +1,39 @@
+.Card {
+    &__container {
+        margin: 0 auto;
+        text-align: center;
+        width: 95vw;
+        padding: 5px;
+        max-width: 1400px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        transition: all .3s ease;
+    }
+    &__item {
+        flex: 1 0 7%;
+        margin-bottom: 1.25%;
+        max-width: 7%;
+        transition: all .3s ease;
+        &:not(:last-child) {
+            margin-right: .5%;
+        }
+        &.active {
+            border: $border-active;
+            padding: .2px;
+        }
+        &.hidden {
+            display: none;
+        }
+        &.active-flipped {
+            transform: translateY(-1px);
+        }
+    }
+    &__img {
+        width: 100%;
+        min-height: 150px;
+        cursor: pointer;
+    }
+}

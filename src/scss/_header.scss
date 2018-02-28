@@ -1,0 +1,40 @@
+
+.header {
+    &__container {
+        min-height: 300px;
+        padding: 3rem;
+        margin-top: 3.5rem;
+        background-color: rgba($color-background, .9);
+    } //text
+    &--main {
+        font-size: 54px;
+        letter-spacing: .1px;
+        font-weight: 700;
+    }
+    &--sub {
+        font-size: 30px;
+        line-height: 130%;
+        font-weight: 400;
+    }
+    &--three {
+        font-size: 24px;
+        border-bottom: 3px solid $color-tertiary;
+        padding-bottom: 8px;
+        width: 40%;
+    }
+    &__text-container {
+        margin: 0 auto;
+        width: 90%;
+    }
+    &__directions {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-content: center;
+        &-item {}
+        &-text {
+            font-size: 18px;
+            line-height: 130%;
+        }
+    }
+}
