@@ -108,6 +108,7 @@ function createTemplate(strTemplate, cardElement) {
     strTemplate += `
         <div class="Card__item"  id="card__flip" data-value ="${cardElement.value}" data-suit ="${cardElement.suit}" data-code ="${cardElement.code}" data-flipped="false">
             <div class="front">
+
             <img src="./assets/playing-card-back.png" class="Card__img" alt="card front">
             </div><!-- end front -->
             <div class="back">
@@ -148,7 +149,14 @@ function checkCards(SelectedCard) {
         $cardArr.push(element);
     }
 
+    <<
+
     // console.log("Flipped array length", $flippedCards.length);
+    ===
+    ===
+    =
+    console.log("Flipped array length", $flippedCards.length); >>>
+
     if ($flippedCards.length == 2) {
         //2 cards are shown, now check
         // console.log("Performing action...");
@@ -190,25 +198,32 @@ function checkCards(SelectedCard) {
             $flippedCards == 0;
 
 
+
         } //end else if datasets dont match
 
     } //end initial if
 
-    this.flipActive = function () {
-        /*
-         - The cards do not match,
-         -Empty the flippedArray, to be reusable
-         - toggle all 
-            -Timeout, allow user to see cards before flipping
-        -Show mismatch error
-        */
-        //clearTimeout(); //clear timeout, in case user clicks too fast
-        $(".active-flipped").flip('toggle');
-        $flippedCards.forEach((element) => {
-            element.classList.remove("active-flipped");
-        })
-        $(".u-alert--danger").toggleClass("success-shown");
+
+} //end else if datasets dont match
+
+} //end initial if
 
 
-    }
+this.flipActive = function () {
+    /*
+     - The cards do not match,
+     -Empty the flippedArray, to be reusable
+     - toggle all 
+        -Timeout, allow user to see cards before flipping
+    -Show mismatch error
+    */
+    //clearTimeout(); //clear timeout, in case user clicks too fast
+    $(".active-flipped").flip('toggle');
+    $flippedCards.forEach((element) => {
+        element.classList.remove("active-flipped");
+    })
+    $(".u-alert--danger").toggleClass("success-shown");
+
+
+}
 }; //end function
