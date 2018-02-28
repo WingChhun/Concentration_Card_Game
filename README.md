@@ -10,24 +10,29 @@ Single person card game called Concentration, will make use of the API from http
 -	The game ends when the user has matched all cards.
 
 ### Requirements
-1.	Use one of the following frameworks/languages to develop your game:
--	React.js [create-react-app](https://github.com/facebook/create-react-app), OR
--	Angular 2/4 with Typescript [Angular CLI](https://github.com/angular/angular-cli), OR
--	Javascript 
+
+- vanillJS
 
 2.	Use APIs on http://deckofcardsapi.com/  for shuffling the deck and selecting cards when laying them out on the board. We realize that you could simulate shuffling the cards and selecting cards without using these apis, but we would like you to demonstrate using asynchronous api calls in your code.
 
 3.	You can optionally use the graphic files in the /assets folder of this repository for displaying the cards
 
+# Directions on running web app
+- Within the package.json I have created a script
+    - Within Bash, navigate to the project directory and run:
+       -"npm install"
+       -"npm run start"
+    -If there are no errors, then this web app should deploy successfully to localhost:3000
+    
+## Dependencies
 
-### Goals / Approach
-- Will be implemented using Javascript
- - Create separate Class to handle Ajax calls, and create object of that class
-    -Follow (OOP) methodology
--Leave door open to approach using Angular in the future
-- Accomplish unit testing with Jest
-    - Or use of Mocha / Chai (less familiar, need to learn as I go)
-### Bonus Points
-You will get bonus points for:
--	creating unit tests for your game.
--	Using ES6 if developing with React.js
+- jQuery, jQuery-flip, Bootstrap, popper.js
+
+## DevDependencies
+-Gulp, Gulp-Sass, BrowserSync
+
+## Plans for future
+
+- Unit testing with Jest
+- Separate Deck of API into separate Class to follow more traditional OOP and cleaner architecture
+- Write my own JS promises to navigate through asynchronous JS smoother 
