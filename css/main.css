@@ -68,12 +68,12 @@ utilities
 .u-alert--success, .u-alert--success-2 {
   text-align: center;
   color: #00AFB5;
-  font-size: 17px; }
+  font-size: 24px; }
 
 .u-alert--danger {
   text-align: center;
   color: #A30000;
-  font-size: 17px; }
+  font-size: 24px; }
 
 .hidden {
   visibility: hidden; }
