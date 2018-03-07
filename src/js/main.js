@@ -1,6 +1,10 @@
+/*
+ - Global variables Deck and cardArr
+        -Deck will be populated from DeckofCards API
+            -CardArr depends on ObjectID retrieved from Deck and will be populated using API as well
+*/
 let Deck = null;
 let cardArr = [];
-
 
 $(document).ready(function () {
     console.log("Document loaded and ready...");
@@ -10,36 +14,32 @@ $(document).ready(function () {
     start();
 });
 
-function start() {
+//Run loadSpinner function as well as setDeck() to start the program
+const start = () => {
     loadSpinner();
     setDeck();
 
 }
 
-function loadSpinner() {
-    const $loadSpinner = $(".loader");
-
-    window.addEventListener("load", function (e) {
-        $loadSpinner.css({
-            'display': 'none'
-        });
-    });
-
-}
-
-function startGame(e) {
-    /*
-        -Within this function, I must create a new deck, shuffled
-        -Create a string template to append to my card container, 
-            -String templlate must have embedded data attr for data-value, to allow for pattern matching
-    */
+/*
+ - Function startGame, only runs when user clicked 'newGame', run setDeck() start game over, prevent any page refresh default behavior
+*/
+const startGame = (e) => {
     e.preventDefault(); //prevent a page Refresh
-    // console.log("User has clicked start game!");
     setDeck();
 
 }
 
-function setDeck() {
+/*
+ - Function setDeck
+ - Main function, will handle starting the game and ajax calls
+    - 1. Reset the Deck to NULL, clear it in case multiple games have already been played
+    - 2. Make Ajax request to DeckOfCards API,
+        -populate Deck with data retrieved from API
+        -Show 'Shuffled' to user
+    - 3. Once done, run setCards(), will handle populating cardArr, b/c cardArr depends on Deck not being NULL.
+*/
+const setDeck = () => {
     Deck = null;
     $.ajax({
             url: "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1",
@@ -57,55 +57,89 @@ function setDeck() {
             }, 500);
 
             // console.log("Deck success", Deck);
-            setCards();
+            this.setCards();
         })
         .fail((err) => {
             alert("Error getting New deck!");
             // console.log("Error", err);
         });
 
-};
-
-function setCards() {
     /*
-        -Request, to draw cards, 
-        -Return array containing cards, will be used rto lay out the cards
-    */
-    let shuffleURL = `https://deckofcardsapi.com/api/deck/${Deck.deck_id}/draw/?count=52`;
-    $.ajax({
-            url: shuffleURL,
-            method: "GET",
-            json: "jQuery.parseJSON"
-        })
-        .done((results) => {
+        -Function setCards()
+            - 1.Request, to draw cards, depends on using deck_id from the Deck 
+            - 2.Return array containing cards, will be used rto lay out the cards
 
-            cardArr = []; //reset cardArr, in case resetting game
-            results.cards.forEach((card) => {
-                cardArr.push(card);
+    
+    */
+    this.setCards = () => {
+
+        let shuffleURL = `https://deckofcardsapi.com/api/deck/${Deck.deck_id}/draw/?count=52`;
+        $.ajax({
+                url: shuffleURL,
+                method: "GET",
+                json: "jQuery.parseJSON"
+            })
+            .done((results) => {
+
+                cardArr = []; //reset cardArr, in case resetting game
+                results.cards.forEach((card) => {
+                    cardArr.push(card);
+                });
+                // console.log("Card success", cardArr);
+                //After, run outer consts
+                populateCards(); //go to other function to continue
+            })
+            .fail((err) => {
+                // console.log("Error returning Cards...", err);
             });
-            // console.log("Card success", cardArr);
-            //After, run outer functions
-            populateCards(); //go to other function to continue
-        })
-        .fail((err) => {
-            // console.log("Error returning Cards...", err);
-        });
+    }
 };
 
-function populateCards() {
+/*
+ -Function populateCards
+    -1. Loop through cardArr, create a string template, depends on function createTemplate()
+    -2. Reset the innerHTML of cardContainer
+        -insert string Template into Card__feed for cards
+    -DEPENDENCIES
+        -function createTemplate()
+        -checkCards();
+*/
+const populateCards = () => {
     let template = "";
     const $cardContainer = document.querySelector("#Card_feed");
-    //Loop through cardArr, create a string template
     for (let cardElement of cardArr) {
         template = createTemplate(template, cardElement);
     }
     $cardContainer.innerHTML = ''; //Reset before iterating again and again
     $cardContainer.insertAdjacentHTML("afterbegin", template);
 
-    cardFlip();
+    /*
+         -function cardFlip(),
+             -1. use jQuery plugin jquery-flip, apply flip() to cardItems
+             -2. Add event listener 'click', add class and data-attribute for flipped
+             -3. Pass in the Card Item Clicked into checkCards();
+      */
+    this.cardFlip = () => {
+
+        $(".Card__item").flip();
+        //Event listener
+        $(".Card__item").on('click', function () {
+            $(this).addClass("active-flipped");
+            $(this).data("flipped", "true");
+
+            checkCards($(this));
+        });
+
+    }
+    this.cardFlip(); //run this.cardFlip function, 
 }
 
-function createTemplate(strTemplate, cardElement) {
+/* Function createTemplate()
+    - 1. Accept template String and cardElement of cardArr
+    -2. Appeend to templateString HTML that adds multiple data -attributes depending on the cardElement
+        -Data attributes include value, image, suit, code, and custom - flipped
+*/
+const createTemplate = (strTemplate, cardElement) => {
 
     strTemplate += `
         <div class="Card__item"  id="card__flip" data-value ="${cardElement.value}" data-suit ="${cardElement.suit}" data-code ="${cardElement.code}" data-flipped="false">
@@ -121,89 +155,58 @@ function createTemplate(strTemplate, cardElement) {
     return strTemplate;
 };
 
-function cardFlip() {
-    // $("#card__flip").flip();
 
-    $(".Card__item").flip();
-    //Event listener
-    $(".Card__item").on('click', function () {
-        $(this).addClass("active-flipped");
-        $(this).data("flipped", "true");
+/*
+Every time a card is selected, We check all the cards, with data attribute of flipped =true, thne compar the codes
+*/
+const checkCards = (SelectedCard) => {
 
-        checkCards($(this));
-    });
-
-
-
-}
-
-function checkCards(SelectedCard) {
-    /*
-    Every time a card is selected, We check all the cards, with data attribute of flipped =true, thne compar the codes
-    */
-    //check the value
     let $flippedCards = document.querySelectorAll(".active-flipped");
     let $cardItemArr = document.querySelectorAll(".Card__item");
     let $cardArr = [];
 
-
     for (let element of $cardItemArr) {
         $cardArr.push(element);
     }
-
-
     // console.log("Flipped array length", $flippedCards.length);
-
     //console.log("Flipped array length", $flippedCards.length);
-
     if ($flippedCards.length == 2) {
         //2 cards are shown, now check
-        // console.log("Performing action...");
+        // console.log("Flipped Cards - Length 2","Performing action...");
         let $firstCard = $flippedCards[0];
         let $secondCard = $flippedCards[1];
 
+
         if ($firstCard.dataset.value === $secondCard.dataset.value) {
-            //Remove the cards from the array
-            //Only return if they do not match the value AND dont match the respective codes
-            //Show success alert
+            /*
+              -Remove cards from cardArr
+              -Remove cards HTML from cardFeed
+              -Show success message to user
+            */
             $(".u-alert--success").toggleClass("success-shown");
-            //Timeout, Add a delay so user can see that they have a match
+            cardArr = cardArr.filter((element) => {
+                return element.code != $firstCard.dataset.code && element.code != $secondCard.dataset.code;
+            });
+
             setTimeout(() => {
                 $firstCard.remove();
                 $secondCard.remove();
+                $(".u-alert--success").toggleClass("success-shown");
             }, 450);
 
-            let newArr = cardArr.filter((element) => {
-                return element.code != $firstCard.dataset.code && element.code != $secondCard.dataset.code;
-            });
-            cardArr = newArr;
-            setTimeout(() => {
-                $(".u-alert--success").toggleClass("success-shown");
-                //User has completed the game, toggle success
-                if (cardArr.length == 0) {
-                    $('.toggle-success').toggleClass('hidden, success-shown');
-                }
-            }, 500);
-
         } else if (!($firstCard.dataset.value == $secondCard.dataset.value)) {
-
-            // console.log("The cards do not match, handling it...");
-
+            // console.log("checkCards() -No match""The cards do not match, handling it...");
             $(".u-alert--danger").toggleClass("success-shown");
             setTimeout(() => {
                 this.flipActive();
             }, 500);
-
-            $flippedCards == 0;
-
-
-
+            $flippedCards == 0; //reset flippedCards length to 0
         } //end else if datasets dont match
 
     } //end initial if
 
 
-    this.flipActive = function () {
+    this.flipActive = () => {
         /*
          - The cards do not match,
          -Empty the flippedArray, to be reusable
